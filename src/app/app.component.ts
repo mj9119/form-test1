@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
+  selector: 'my-app',
+  //templateUrl: './app.component.html',
+  template: `
+      <div>
+        <myquiz-app></myquiz-app>
+      </div>
+  `,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {

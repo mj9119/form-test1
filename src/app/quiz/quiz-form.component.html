@@ -1,0 +1,102 @@
+<div class="container ">
+  <div class="card appborder">
+
+    <div class="card-header ">
+      <div class="col-sm-2 col-md-1 col-lg-2 float-right">
+          <br>
+          <img src="../../assets/images/SocFifthDiv.jpg" style="border: 2px solid #a1a1a1;border-radius: 25px;background-color:#ffff33;" class="img-rounded img-responsive center-block float-right" alt="SocFifthDiv" width="135" height="132">
+      </div>
+
+      <div>
+        <h1>Society of the Fifth Division</h1>
+        <h2>Military History Questions</h2>
+        <h4>For each question choose one answer then click the Submit Answer button.  Hints are available for some questions.</h4>
+      </div>
+    </div>
+    
+    <div class="card-body border-top-0">
+
+        <p>Question: {{theQuestion}} </p> 
+      
+    <!-- <p>{{answerResponse}}</p> -->
+    <form class="form-horizontal" 
+            novalidate
+            (ngSubmit)="onFormSubmit(qaForm)"
+            #qaForm="ngForm">
+      <div class="radio">
+        <label><input type="radio" 
+                value="firstOpt"
+                name="selectedAnswer"
+                required
+                [(ngModel)]="user.selectedAnswer"
+                #optradio="ngModel"> {{theFirstOption}}
+        </label>
+      </div>
+      <div class="radio">
+          <label><input type="radio" 
+                  value="secondOpt"
+                  name="selectedAnswer"
+                  required
+                  [ngModel]="user.selectedAnswer"
+                  #optradio="ngModel"> {{theSecondOption}}
+          </label>
+        </div>
+        <div class="radio">
+            <label><input type="radio" 
+                    value="thirdOpt"
+                    name="selectedAnswer"
+                    required
+                    [ngModel]="user.selectedAnswer"
+                    #optradio="ngModel"> {{theThirdOption}}
+            </label>
+          </div>
+          <div class="radio">
+              <label><input type="radio" 
+                      value="fourthOpt"
+                      name="selectedAnswer"
+                      required
+                      [ngModel]="user.selectedAnswer"
+                      #optradio="ngModel"> {{theFourthOption}}
+              </label>
+          </div>
+      <br>
+      <label class="hint">
+
+        <input type="checkbox"
+        [(ngModel)]="user.sendHint"  
+        name="sameadr"> Click here for a Hint:
+                <!-- <p {{user.sendHint ? 'Show' : 'Hide'}}</p> -->
+                  <div  *ngIf="user.sendHint">{{theHint}}</div>
+                  <div *ngIf="!user.sendHint">&nbsp; </div>
+
+      </label>
+      
+      <p class="response">{{answerSubmitted}}</p>
+
+      <button class="btn btn-primary btn-lg" 
+              *ngIf="!needNextQuestion"
+              type="submit"  
+              [disabled]="!qaForm.valid">Submit Answer
+      </button>
+
+      <button class="btn btn-success btn-lg" 
+            *ngIf="needNextQuestion && !isEndOfTest"
+            type="submit"  
+            [disabled]="!qaForm.valid">Click for Next Question
+      </button>
+
+      <button class="btn btn-warning btn-lg" 
+            *ngIf="isEndOfTest"
+            type="submit"  >Restart the Quiz
+            <!-- [disabled]="!qaForm.valid">Restart the Quiz -->
+      </button>
+    </form>
+
+  </div>
+  <div class="card-footer">
+    This is an Angular 2 application written by Webmaster Joe Boman.  It is hosted on firebase.google.com and utilizes Typescript": "~2.7.2, Bootstrap 4, HTML & CSS
+  </div>
+
+  </div>
+</div>
+  

@@ -1,0 +1,29 @@
+thead{
+    color:#337AB7;
+}
+.card-header{
+    background-color: #ffff33;    
+}
+.appborder {
+    /*margin: 1px; */
+    border: 6px solid rgb(2, 19, 3);
+}
+h1, h2{
+    font-weight: bold;
+}
+
+.response {
+    text-align: left;
+    font-size: 1.175em;
+    color: red;
+}
+.hint {
+    text-align: left;
+    font-size: 1.175em;
+    color: red;
+}
+.card-body{
+    text-align: left;
+    font-size: 1.375em;
+    color: blue;
+}
