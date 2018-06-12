@@ -140,7 +140,7 @@ export class QuizFormComponent
         }
     ];  
     
-
+    numOfQuestions: number = 0;
     myNumber: number = 0;
     isEndOfTest: boolean = false;    
     needNextQuestion: boolean = false;
@@ -151,28 +151,24 @@ export class QuizFormComponent
     //theQuestion: string = this.questions[1].questionPhrased.toString();
     //theFirstOption: string = this.questions[this.myNumber++].questionPhrased.toString();
 
-/*     theSecondOption: string = "Omar N. Bradley";
-    theThirdOption: string = "Douglas MacArthur";
-    theFourthOption: string = "William \'Bill\' Slim";
-    theCorrectAnswer: string = "second";
-    theHint: string = "This is the first hint"; */
-
     answerResponse: string = "";
     outputResponse: string = "";
     user: User = new User();
     
     onFormSubmit(form: NgForm) {
-        this.isEndOfTest = false;
-           if(this.myNumber==0){
-              //this.myNumber = -1;
-              this.isEndOfTest = false;
-              //this.needNextQuestion = true; 
-        }  
-
+        this.isEndOfTest = false;        
+        if(this.myNumber==0){              
+            this.isEndOfTest = false;              
+        }
+        
         if(this.needNextQuestion==true){
             this.resetForm(form);
             if(this.myNumber < 9){
                 this.myNumber++;
+                
+                //this.numOfQuestions = this.questions.length ;
+
+
                 this.theQuestion = this.questions[this.myNumber].questionPhrased.toString();
                 this.theFirstOption = this.questions[this.myNumber].firstOpt.toString();
                 this.theSecondOption = this.questions[this.myNumber].secondOpt.toString();
@@ -190,27 +186,33 @@ export class QuizFormComponent
                 
             }
         }
-        this.isValidFormSubmitted = false;
+        this.isValidFormSubmitted = false;   
+        
+        
         if(form.invalid){
+            return;
+        }
+        
+/*         if(form.invalid){
            this.theSecondOption == "Form Invalid";
            return;
-        }
-        //this.theSecondOption = form.controls['selectedAnswer'].value;
-        //this.isValidFormSubmitted = true;
+        } else {
+            this.theSecondOption == "Form is Valid";
+            return;
+        } */
+        //this.theSecondOption = "Logic flag Set";
+        //this.theSecondOption = form.controls['selectedAnswer'].value;        
         //this.user.userName = form.controls['uname'].value;
+
         this.user.selectedAnswer = form.controls['selectedAnswer'].value;
         
         if(form.controls['selectedAnswer'].value==this.theCorrectAnswer){
-            this.theQuestion = this.questions[this.myNumber].questionPhrased.toString();
-            // this.theSecondOption = "Hurrah";
+            this.theQuestion = this.questions[this.myNumber].questionPhrased.toString();            
             this.answerSubmitted = "Yes, correct answer!";
             this.needNextQuestion = true;
-        } 
-        else{
+        }        
+        else{            
             // outputResponse
-/*             if(this.theCorrectAnswer =="thirdOpt"){
-                this.outputResponse = this.theThirdOption;
-            } */
             switch(this.theCorrectAnswer) {
                 case "firstOpt": {
                     this.outputResponse = this.theFirstOption;
@@ -228,6 +230,10 @@ export class QuizFormComponent
                     this.outputResponse = this.theFourthOption;
                     break;
                 }
+/*                  default: {
+                    this.outputResponse = "Default logic path";
+                    break;
+                } */
             }
 
             this.answerSubmitted = "Correct Answer: " +  this.outputResponse;
@@ -254,17 +260,6 @@ export class QuizFormComponent
     showImage: boolean = false;
     */
     
-/*     _listFilter: string ;
-    get listFilter(): string {
-        return this._listFilter;
-    }
-    set listFilter(value:string){
-        this._listFilter = value;
-        this.filteredProducts= this.listFilter ? this.performFilter(this.listFilter) : this.products;
-    } */
-    
-
-    
     theQuestion: string = this.questions[this.myNumber].questionPhrased.toString();
     theFirstOption: string = this.questions[this.myNumber].firstOpt.toString();
     theSecondOption: string = this.questions[this.myNumber].secondOpt.toString();
@@ -272,44 +267,6 @@ export class QuizFormComponent
     theFourthOption: string = this.questions[this.myNumber].fourthOpt.toString();
     theCorrectAnswer: string = this.questions[this.myNumber].correctOpt.toString();
     theHint: string = this.questions[this.myNumber].hint.toString(); 
-
-/*     filteredProducts: IQuestion[];
-    questions: IQuestion[] = [
-            "productId": 1,
-            "productName": "Leaf Rake",
-            "productCode": "GDN-0011",
-            "releaseDate": "March 19, 2016",
-            "description": "Leaf rake with 48-inch wooden handle.",
-            "price": 19.95,
-            "starRating": 3.2,
-            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
-        },
-        {
-            "productId": 2,
-            "productName": "Garden Cart",
-            "productCode": "GDN-0023",
-            "releaseDate": "March 18, 2016",
-            "description": "15 gallon capacity rolling garden cart",
-            "price": 32.99,         
-            "starRating": 4.2,
-            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
-        }
-    ]; */
-
-/*     constructor() {
-        this.filteredProducts = this.products;
-        this.listFilter = 'cart';
-    } */
-
-/*     performFilter(filterBy: string): IProduct[] {
-        filterBy = filterBy.toLocaleLowerCase();
-        return this.products.filter((product: IProduct) =>
-    product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
-    } */
-
-/*     toggleImage(): void {
-        this.showImage = !this.showImage;
-    } */
 
     ngOnInit(): void {
         
